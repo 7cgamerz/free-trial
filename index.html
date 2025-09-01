@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power POS-SYSTEM</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+<body>
+    <div id="trialEndedOverlay">
+        <h2>Trial Version Ended</h2>
+        <p>Your 48-hour trial period has expired. Please purchase the premium version to continue using the system.</p>
+        <a href="https://7cgamerz.github.io/power-pos-system/" target="_blank" class="btn btn-primary">Buy Premium Version</a>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>PPS (Free Trial Pk)</h1>
+            <nav>
+                <a class="nav-link active" data-target="billing">Billing</a>
+                <a class="nav-link" data-target="products">Products</a>
+                <a class="nav-link" data-target="settings">Settings</a>
+            </nav>
+        </header>
+
+        <main>
+            <!-- PAGE 1: BILLING -->
+            <section id="billing" class="page active">
+                <div class="main-content two-column">
+                    <div class="panel">
+                        <h2>Current Bill</h2>
+                        <div class="form-group">
+                            <label for="productSearch">Search Product</label>
+                            <input type="text" id="productSearch" placeholder="Search product by name...">
+                        </div>
+                        <div class="form-group"><label for="selectProduct">Select Product</label><select id="selectProduct"></select></div>
+                        <div class="form-group"><label for="quantity">Quantity</label><input type="number" id="quantity" value="1" min="1"></div>
+                        <button id="addToBill" class="btn btn-primary">Add to Bill</button>
+                        <hr style="margin: 25px 0;">
+                        <h3>Bill Items</h3>
+                        <table>
+                            <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th>Action</th></tr></thead>
+                            <tbody id="billBody"></tbody>
+                        </table>
+                        <div class="text-right"><p class="bill-total">Total: Rs<span id="totalAmount">0.00</span></p></div>
+                        <button id="saveBill" class="btn btn-secondary" style="padding: 15px; font-size: 1.2em;">Save & Print Bill</button>
+                    </div>
+                    <div class="panel">
+                        <h2>Recent Transactions</h2>
+                        <ul id="transactionList"></ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 2: PRODUCTS -->
+            <section id="products" class="page">
+                <div class="main-content single-column">
+                    <div class="panel">
+                        <h2>Add/Update Product</h2>
+                        <div class="form-group"><label for="productName">Product Name</label><input type="text" id="productName" placeholder="e.g., Milk 1L"></div>
+                        <div class="form-group"><label for="productPrice">Product Price (Rs)</label><input type="number" id="productPrice" placeholder="e.g., 55.00"></div>
+                        <button id="addProduct" class="btn btn-primary">Save Product</button>
+                    </div>
+                    <div class="panel">
+                        <h2>Available Products</h2>
+                        <table>
+                            <thead><tr><th>Product Name</th><th>Price</th><th>Action</th></tr></thead>
+                            <tbody id="productList"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 3: SETTINGS -->
+            <section id="settings" class="page">
+                <div class="main-content single-column">
+                    <div class="panel">
+                        <h2>Receipt Configuration</h2>
+                        <form id="settingsForm">
+                            <div class="form-group"><label for="storeName">Store Name</label><input type="text" id="storeName" placeholder="Your Supermarket Name"></div>
+                            <div class="form-group"><label for="storeAddress">Address</label><input type="text" id="storeAddress" placeholder="123 Main St, City"></div>
+                            <div class="form-group"><label for="storeContact">Contact / Phone</label><input type="tel" id="storeContact" placeholder="+91 12345 67890"></div>
+                            <div class="form-group"><label for="receiptFooter">Receipt Footer Message</label><textarea id="receiptFooter" rows="3" placeholder="Thank you for shopping with us!"></textarea></div>
+                            <div class="form-group"><label for="receiptWidth">Receipt Width (inches)</label><input type="number" id="receiptWidth" value="3.0" step="0.1" min="1"></div>
+                            <button type="submit" class="btn btn-secondary">Save Settings</button>
+                        </form>
+                        <hr style="margin: 25px 0;">
+                        <h2>System Reset</h2>
+                        <p><strong>Warning:</strong> This will delete all products and transaction data. Type <span id="resetConfirmNumber" style="font-weight: bold; color: var(--danger-color);">12345</span> into the prompt to confirm.</p>
+                        <button id="resetSystemBtn" class="btn btn-danger">Reset System</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- This area is populated by JS and made visible only for printing -->
+    <div id="print-area"></div>
+      <script src="script.js"></script>
+  </body>
+</html>
